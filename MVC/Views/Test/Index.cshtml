@@ -1,0 +1,140 @@
+﻿@model IEnumerable<MVC.Models.mvcEmployeeModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of Employees in Company XYZ</h2>
+
+<p>
+    <a href="@Url.Action("Create", "Test")" class="btn btn-default"><i class="fas fa-user-plus"></i>Create</a>
+</p>
+<table class="table table-bordered table-responsive table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+
+                    <a href="@Url.Action("Edit","Test", new {id = item.EmployeeID } )" class="btn btn-primary"><i class="fas fa-pen"></i>EDIT</a>
+                    <a href="@Url.Action("Details","Test", new {id = item.EmployeeID } )" class="btn btn-primary"><i class="fas fa-expand-arrows-alt"></i>DETAILS</a>
+                    <a onclick="Delete(@item.EmployeeID)" class="btn btn-primary"><i class="fas fa-user-minus"></i>Delete</a>
+
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailsModal">
+                        <i class="fas fa-expand-arrows-alt"></i> Detail Modal
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Details of @item.Name</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => item.EmployeeID, htmlAttributes: new { @class = "label-control col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => item.EmployeeID, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => item.Name, htmlAttributes: new { @class = "label-control col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => item.Name, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => item.Age, htmlAttributes: new { @class = "label-control col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => item.Age, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => item.Position, htmlAttributes: new { @class = "label-control col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => item.Position, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => item.Salary, htmlAttributes: new { @class = "label-control col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => item.Salary, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style:"align-content">Close</button>
+                                    <a href="@Url.Action("Edit","Test", new {id = item.EmployeeID } )" class="btn btn-primary" style:"align-content"><i class="fas fa-pen"></i>EDIT</a>
+
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+
+        }
+    </tbody>
+
+</table>
+
+
+
+@section scripts{
+
+    <script>
+        $(function () {
+
+            var successMessage = ' @TempData["SuccessMessage"]'
+
+            if (successMessage != '') {
+                alertify.success(successMessage);
+            }
+        });
+
+        function Delete(id) {
+
+            alertify.confirm('Web API operations', 'Are you sure you want to delete this record ?', function () {
+                window.location.href = '@Url.Action("Delete", "Test")/' + id;
+            }, null);
+        };
+
+        function showModal() {
+            $(window).load(function () {
+                $("#myModal").modal('show');
+            })
+            
+        }
+
+       
+
+    </script>
+}
