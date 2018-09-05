@@ -48,7 +48,7 @@ namespace MVC.Controllers
         //Get
         public ActionResult Edit(int id)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Test/" + id.ToString()).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Test/" + id).Result;
             var result = response.Content.ReadAsAsync<mvcEmployeeModel>().Result;
             return View(result);
         }
@@ -56,7 +56,7 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Edit(mvcEmployeeModel model)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Test/" + model.EmployeeID.ToString(), model).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Test/" + model.EmployeeID, model).Result;
             TempData["SuccessMessage"] = "Profile Updated Successfully";
             return RedirectToAction("Index");
         }
@@ -67,7 +67,7 @@ namespace MVC.Controllers
         public ActionResult Delete(int id)
 
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("Test/" + id.ToString()).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("Test/" + id).Result;
             TempData["SuccessMessage"] = "Profile Deleted Successfully";
 
             return RedirectToAction("Index");

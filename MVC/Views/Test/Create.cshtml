@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+   
     <div class="form-horizontal" id="myForm">
         <hr />
 
@@ -73,7 +73,7 @@
             });
 
             $("#reset").click(function () {
-                console.log("SUNDAR")
+               // console.log("SUNDAR")
                 $("#myForm")[0].reset();
 
             })
