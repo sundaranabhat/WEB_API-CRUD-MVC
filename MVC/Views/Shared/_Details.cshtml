@@ -1,0 +1,52 @@
+﻿@model MVC.Models.mvcEmployeeModel
+
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Details of @Model.Name</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    @Html.LabelFor(model => Model.EmployeeID, htmlAttributes: new { @class = "label-control col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => Model.EmployeeID, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => Model.Name, htmlAttributes: new { @class = "label-control col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => Model.Name, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => Model.Age, htmlAttributes: new { @class = "label-control col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => Model.Age, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => Model.Position, htmlAttributes: new { @class = "label-control col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => Model.Position, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => Model.Salary, htmlAttributes: new { @class = "label-control col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => Model.Salary, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style:"align-content">Close</button>
+                <a href="@Url.Action("Edit","Test", new {id = Model.EmployeeID } )" class="btn btn-primary" style:"align-content"><i class="fas fa-pen"></i>EDIT</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+

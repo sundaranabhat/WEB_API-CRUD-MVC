@@ -16,5 +16,12 @@ namespace MVC.Models
         public string Position { get; set; }
         public Nullable<int> Age { get; set; }
         public Nullable<int> Salary { get; set; }
+
+
+
+
+        public int EmpId { get; set; }
+        public string Designation { get; set; }
+        public string EmpName { get; set; }
     }
 }

@@ -12,5 +12,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_ContactList_Test" FunctionName="CRUDDBModel.Store.sp_ContactList_Test" />
   </EntityContainerMapping>
 </Mapping>

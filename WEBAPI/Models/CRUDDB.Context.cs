@@ -12,6 +12,8 @@ namespace WEBAPI.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class CRUDDBEntities : DbContext
     {
@@ -26,5 +28,10 @@ namespace WEBAPI.Models
         }
     
         public virtual DbSet<Employee> Employees { get; set; }
+    
+        public virtual int sp_ContactList_Test()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ContactList_Test");
+        }
     }
 }

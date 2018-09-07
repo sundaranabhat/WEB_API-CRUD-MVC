@@ -12,5 +12,6 @@
   </EntityType>
   <EntityContainer Name="CRUDDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <FunctionImport Name="sp_ContactList_Test" />
   </EntityContainer>
 </Schema>

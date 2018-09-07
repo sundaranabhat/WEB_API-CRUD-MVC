@@ -10,6 +10,7 @@
     <Property Name="Age" Type="int" />
     <Property Name="Salary" Type="int" />
   </EntityType>
+  <Function Name="sp_ContactList_Test" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="CRUDDBModelStoreContainer">
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
