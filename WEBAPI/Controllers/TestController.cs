@@ -10,21 +10,31 @@ namespace WEBAPI.Controllers
 {
     public class TestController : ApiController
     {
-        //   private CRUDDBEntities db = new CRUDDBEntities();
-
+      
         // GET: api/Test
 
-        public List<ModelTest> Get()
+        public HttpResponseMessage Get()
         {
-            using (var ent = new CRUDDBEntities())
+            using (var db = new CRUDDBEntities())
             {
-                var procValue = ent.Database.SqlQuery<ModelTest>("sp_ContactList_Test").ToList();
-                return procValue;
+                var procValue = db.Database.SqlQuery<ModelTest>("sp_ContactList_Test").ToList();
+
+                if (procValue != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, procValue);
+                }
+
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Employees not Found");
+
+                }
             }
 
         }
 
         // GET: api/Test/5
+       
 
         public HttpResponseMessage Get(int id)
         {
@@ -44,6 +54,7 @@ namespace WEBAPI.Controllers
             }
         }
 
+     
 
         public HttpResponseMessage Post([FromBody] Employee employee)
         {
